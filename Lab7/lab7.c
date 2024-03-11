@@ -339,10 +339,15 @@ int main()
     Node *root = NULL;
     char option[10];
     int data;
+    int flag = 0;
 
     while (1)
     {
-        scanf("%s", option);
+        if (flag == 0)
+        {
+            scanf("%s", option);
+        }
+        flag = 0;
 
         if (strcmp(option, "INSERT") == 0)
         {
@@ -370,8 +375,10 @@ int main()
                     break;
                 }
             }
+            flag = 1;
+            continue;
         }
-        if (strcmp(option, "DELETE") == 0)
+        else if (strcmp(option, "DELETE") == 0)
         {
             while (1)
             {
@@ -397,6 +404,8 @@ int main()
                     break;
                 }
             }
+            flag = 1;
+            continue;
         }
         if (strcmp(option, "PRINT") == 0)
         {
