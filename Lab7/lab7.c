@@ -373,10 +373,32 @@ int main()
         }
         if (strcmp(option, "DELETE") == 0)
         {
-            scanf("%d", &data);
-            root = deleteNode(root, data);
+            while (1)
+            {
+                scanf("%s", option);
+                // check if the input is a number
+                int isNumber = 1;
+                int i;
+                for (i = 0; i < strlen(option); i++)
+                {
+                    if (!isdigit(option[i]))
+                    {
+                        isNumber = 0;
+                        break;
+                    }
+                }
+                if (isNumber)
+                {
+                    data = atoi(option);
+                    root = deleteNode(root, data);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
-        else if (strcmp(option, "PRINT") == 0)
+        if (strcmp(option, "PRINT") == 0)
         {
             print(root);
             printf("\n");
