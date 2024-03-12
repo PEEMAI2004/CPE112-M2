@@ -407,7 +407,7 @@ int main()
             flag = 1;
             continue;
         }
-        if (strcmp(option, "PRINT") == 0)
+        else if (strcmp(option, "PRINT") == 0)
         {
             print(root);
             printf("\n");
@@ -418,7 +418,7 @@ int main()
         }
         else
         {
-            printf("Invalid Command.\n");
+            printf("Invalid command.\n");
         }
     }
     return 0;
