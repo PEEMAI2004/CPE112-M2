@@ -334,7 +334,7 @@ Node *fixTree(Node *root)
 }
 
 // Main function
-int main()
+int main()      
 {
     Node *root = NULL;
     char option[10];
