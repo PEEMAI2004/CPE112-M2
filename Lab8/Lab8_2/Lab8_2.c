@@ -37,6 +37,7 @@ void insert(heap *Heap, int value)
     int i = Heap->size++; // Increase the size of the heap
     Heap->arr[i] = value; // Insert the new element at the end
 
+    // i = Heap->size;
     i = Heap->size / 2 - 1;
     while (i >= 0)
     {
@@ -52,7 +53,6 @@ void delete(heap *Heap, int value)
     {
         return;
     }
-
     int i = 0;
     while (Heap->arr[i] != value) // Find the index of the element to be deleted
     {
@@ -60,8 +60,7 @@ void delete(heap *Heap, int value)
     }
     swap(&Heap->arr[i], &Heap->arr[Heap->size - 1]); // Swap the element with the last element
     Heap->size--;                                    // Decrease the size of the heap
-
-    for (int i = (Heap->size / 2) - 1; i >= 0; i--) // Heapify the heap
+    for (int i = (Heap->size / 2) - 1; i >= 0; i--)  // Heapify the heap
     {
         heapify(Heap, i);
     }
@@ -88,17 +87,17 @@ void swap(int *a, int *b)
 // Function to heapify the heap
 void heapify(heap *Heap, int index)
 {
-    int largest = index;       // Initialize smallest as root
+    int largest = index;       // Initialize largest as r   oot
     int left = 2 * index + 1;  // left = 2*i + 1
     int right = 2 * index + 2; // right = 2*i + 2
 
     if (left < Heap->size && Heap->arr[left] > Heap->arr[largest])
-        largest = left; // If left child is smaller than root
+        largest = left; // If left child is larger than root
 
     if (right < Heap->size && Heap->arr[right] > Heap->arr[largest])
-        largest = right; // If right child is smaller than root
+        largest = right; // If right child is larger than root
 
-    if (largest != index) // If smallest is not root
+    if (largest != index) // If largest is not root
     {
         swap(&Heap->arr[index], &Heap->arr[largest]);
         heapify(Heap, largest); // Recursively heapify the affected sub-tree

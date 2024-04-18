@@ -37,10 +37,12 @@ void insert(heap *Heap, int value)
     int i = Heap->size++; // Increase the size of the heap
     Heap->arr[i] = value; // Insert the new element at the end
 
-    while (i != 0 && Heap->arr[(i - 1) / 2] > Heap->arr[i]) // Fix the min heap property
+    // i = Heap->size;
+    i = Heap->size / 2 - 1;
+    while (i >= 0)
     {
-        swap(&Heap->arr[i], &Heap->arr[(i - 1) / 2]); // Swap the element with its parent
-        i = (i - 1) / 2;                              // Update the index of the element
+        heapify(Heap, i);
+        i--;
     }
 }
 
@@ -51,7 +53,6 @@ void delete(heap *Heap, int value)
     {
         return;
     }
-
     int i = 0;
     while (Heap->arr[i] != value) // Find the index of the element to be deleted
     {
@@ -59,8 +60,7 @@ void delete(heap *Heap, int value)
     }
     swap(&Heap->arr[i], &Heap->arr[Heap->size - 1]); // Swap the element with the last element
     Heap->size--;                                    // Decrease the size of the heap
-
-    for (int i = (Heap->size / 2) - 1; i >= 0; i--) // Heapify the heap
+    for (int i = (Heap->size / 2) - 1; i >= 0; i--)  // Heapify the heap
     {
         heapify(Heap, i);
     }
